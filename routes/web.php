@@ -25,6 +25,10 @@ Route::get('canvas', function ()
     return view('canvas');
 });
 
+Route::get('fields' , function(){
+    return view('fields');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

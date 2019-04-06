@@ -20,6 +20,8 @@
                     :h="item.h"
                     :i="item.i"
                     v-bind:style="style"
+                    
+                    
                     >
                 {{item.i}}
             </grid-item>

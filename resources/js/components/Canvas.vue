@@ -7,7 +7,7 @@
             Circle 2 : <input v-model="circle2.color" ><br />
             </div>
             <div class="rounded-lg bg-grey-darkest" v-bind:style="container">
-                <canvas id="c" :width="canvas.innerWidth" :height="canvas.innerHeight"></canvas>
+                <canvas id="c"  :key="canvasKey" :width="container.width" :height="container.height"></canvas>
             </div>
         </div>
     </div>
@@ -17,11 +17,13 @@ class ColoredCircle {
   constructor (pCanvas, pColor, pLeft, pTop) {
     this._canvas = pCanvas
     this._circle = new fabric.Circle({
-      radius: 30, fill: pColor, left: pLeft, top: pTop, selectable: false
+      radius: 30, fill: pColor, left: pLeft, top: pTop, selectable: true
     });
     this._color = pColor
     pCanvas.add(this._circle)
   }
+ 
+//  color mods
   get color(){
     return this._color
   }
@@ -31,6 +33,8 @@ class ColoredCircle {
 
     return this._color
   }
+ 
+
 }
 var grid = 30;
 
@@ -52,13 +56,15 @@ export default {
                 innerHeight: '400px',
             },
             editing: true,
+            canvasKey: 0,
         }
     },
   mounted(){
 
     var canvas = new fabric.Canvas('c');
-    var circle = new ColoredCircle(canvas, 'red', 60, 20)
-    var circle2 = new ColoredCircle(canvas, 'green', 180, 80)
+    var circle = new ColoredCircle(canvas, 'red', 60, 30 )
+    var circle2 = new ColoredCircle(canvas, 'green', 180, 90)
+    var circle2 = new ColoredCircle(canvas, 'blue', 240, 120)
 
     this.circle = circle
     this.circle2 = circle2
