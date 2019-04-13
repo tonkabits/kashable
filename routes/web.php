@@ -29,6 +29,11 @@ Route::get('fields' , function(){
     return view('fields');
 });
 
+Route::get('tables' , function ()
+{
+    return view('tables');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

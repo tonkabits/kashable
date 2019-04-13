@@ -19,7 +19,9 @@ const mutations = {
             name: person.name,
             lastname: person.lastname,
             
-        })
+        });
+        person.name = " ",
+        person.lastname = " "
     },
     REMOVE_PERSON_FROM_LOCALSTORAGE({persons} , person){
         persons.splice(

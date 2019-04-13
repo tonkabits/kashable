@@ -1,12 +1,12 @@
 <template>
     <div>
         <ul v-for="(person, index) in persons" v-bind:key="index">
-            <li class="py-2">{{person.name}}  |  {{person.lastname}} <button @click="REMOVE_PERSON_FROM_LOCALSTORAGE(person)" class="text-xs rounded-sm bg-red text-white px-2 py-1">remove</button></li>
+            <li class="py-2">{{person.name}}  |  {{person.lastname}} <button @click="REMOVE_PERSON_FROM_LOCALSTORAGE(person)" class="text-xs rounded bg-red text-white px-2 py-1">remove</button></li>
         </ul>
       
-      <input type="text" placeholder="Name" class="border" v-model="person.name">
-      <input type="text" placeholder="Lastame" class="border" v-model="person.lastname">
-      <button @click="ADD_PERSON_TO_LOCALSTORAGE(person)" class="bg-blue px-2 py-1">add item</button>
+      <input type="text" placeholder="Name" class="border rounded p-2" v-model="person.name">
+      <input type="text" placeholder="Lastame" class="border rounded p-2" v-model="person.lastname">
+      <button @click="ADD_PERSON_TO_LOCALSTORAGE(person)" class="bg-blue px-3 py-2 rounded">add item</button>
     </div>
     
 </template>
