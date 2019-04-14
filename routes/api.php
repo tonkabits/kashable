@@ -25,10 +25,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('v.01')->group( function()
 {
+    // this route fetches all tables
     Route::get('/tables', function () 
     {
         return  TableResource::collection(Table::all());
     });
+
+    // ajax request to update and store the position in the database
+    Route::post('/tables', 'TableController@update');
 
     Route::get('/categories' , function ()
     {

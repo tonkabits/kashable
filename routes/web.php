@@ -29,10 +29,16 @@ Route::get('fields' , function(){
     return view('fields');
 });
 
+
+// show all tables
 Route::get('tables' , function ()
 {
     return view('tables');
 });
+
+// select a table
+Route::get('tables/{id}', 'PosController@pickTable')->name('pickTable');
+
 
 Auth::routes();
 

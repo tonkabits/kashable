@@ -28,6 +28,12 @@ Vue.component('canvas-section', require('./components/Canvas.vue').default);
 Vue.component('adding-fields', require('./components/AddingFields.vue').default);
 Vue.component('tables', require('./components/Tables.vue').default);
 
+//pos layout
+Vue.component('category' , require('./components/Category.vue').default);
+Vue.component('plate' , require('./components/Plate.vue').default);
+Vue.component('point-of-sale' , require('./components/PointOfSale.vue').default);
+Vue.component('bill-layout' , require('./components/BillLayout.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

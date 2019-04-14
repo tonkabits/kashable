@@ -12,6 +12,6 @@ class TablesTableSeeder extends Seeder
     public function run()
     {
         //
-        factory('App\Table' , 10)->create();
+        factory('App\Table' , 2)->create();
     }
 }

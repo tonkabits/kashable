@@ -17,6 +17,8 @@ class CreateTablesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('number');
             $table->text('style')->nullable();
+            $table->integer('top');
+            $table->integer('left');
             $table->timestamps();
         });
     }

@@ -22,21 +22,30 @@
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="font-sans antialiased fixed z-20 pin-t pin-x" id="app">
+        <nav class="flex items-center justify-between flex-wrap bg-red p-4">
+            <div class="flex items-center flex-no-shrink text-white mr-6">
+                <img src="" alt="" width="300px">
+            </div>
+
+            <div class="flex items-center w-auto">
+                <div class="text-sm flex-grow">
+                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                        tables
+                    </a>
+                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/pos">
+                        pos
+                    </a>
+                </div>
+                <div class="block md:inline-flex">
+                </div>
+
+
             </div>
         </nav>
-
-        <main class="py-4">
+        
             @yield('content')
-        </main>
+        
     </div>
 </body>
 
