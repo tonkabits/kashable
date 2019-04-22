@@ -1,9 +1,10 @@
 <template>
     <div class="flex">
+        <div class="absolute pin-r p-1">
          <button 
             @click="editLayout(tables)" 
             :class="{'bg-green' : editingActive}"
-            class="w--12 h-8 px-4 absolute bg-blue rounded pin-r"
+            class="w--12 h-8 px-4  bg-blue rounded"
             
             >
             <span v-show="editingActive">
@@ -13,6 +14,18 @@
                 edit
             </span>
         </button>
+         <button 
+            @click="RESET_STATE()" 
+            class="w--12 h-8 px-4 bg-purple rounded"
+            
+            >
+            <span>
+                reset state
+            </span>
+        
+        </button>
+
+        </div>
   
         <div class="w-full h-screen" :style="'background-color: ' + backgroundColor">
             <div class="h-8">
@@ -147,7 +160,7 @@ export default {
     computed: {...mapState(['bills'])},
     methods: {
          //we map all methods referent to adding and closing tables
-        ...mapMutations(['OPEN_BILL' , 'CLOSE_BILL']),
+        ...mapMutations(['RESET_STATE','OPEN_BILL' , 'CLOSE_BILL']),
 
         // we do a ajax request to get the table data
         fetchTables() {

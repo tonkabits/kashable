@@ -3,7 +3,11 @@
     <div class="w-3/4 flex bg-green">
         <div class="w-64 pl-4">
 
-            <div v-for="category in this.categories" :key="category.id" class="w-full" @click="makeThisActiveCategory(category.id)">
+            <div v-for="category in this.categories" 
+                :key="category.id" 
+                class="w-full" 
+                @click="makeThisActiveCategory(category.id)">
+
                 <category 
                 
                     :category="category"
@@ -16,9 +20,11 @@
         </div>
         <div class="w-full h-32 flex flex-wrap">
 
-            <div v-for="plate in this.plates" :key="plate.id">
-                <plate 
+            <div v-for="plate in this.plates" 
+                :key="plate.id">
                 
+                <plate 
+                    :selectedtable="selectedtable"
                     :plate="plate" 
                     :activeCategory="activeCategory"
                     
@@ -64,15 +70,15 @@ export default {
             
         }
     },
-    computed: {...mapState(['currentBills'])},
+    computed: {...mapState(['bills'])},
     methods:{
         //we map all methods referent to adding and closing tables
         ...mapMutations([
             
             'OPEN_TABLE',
             'CLOSE_TABLE',
-            'ADD_DISH_TO_TABLE_BILL',
-            'REMOVE_DISH_FROM_TABLE_BILL',
+            'ADD_PLATE_TO_TABLE_BILL',
+            'REMOVE_PLATE_FROM_TABLE_BILL',
         
         ]),
         

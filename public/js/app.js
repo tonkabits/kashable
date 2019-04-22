@@ -2663,24 +2663,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 //vuex import begin
 
 
  //vuex import end
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['plate', 'activeCategory'],
+  props: ['plate', 'selectedtable', 'activeCategory'],
   data: function data() {
     return {
       text: 'plate'
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['currentBills'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['bills'])),
   methods: _objectSpread({
     pressed: function pressed() {
       alert('added product ' + this.plate.name);
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['OPEN_TABLE', 'CLOSE_TABLE', 'ADD_DISH_TO_TABLE_BILL', 'REMOVE_DISH_FROM_TABLE_BILL']))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['OPEN_TABLE', 'CLOSE_TABLE', 'ADD_PLATE_TO_TABLE_BILL', 'REMOVE_PLATE_FROM_TABLE_BILL']))
 });
 
 /***/ }),
@@ -2742,6 +2750,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 //vuex import begin
 
 
@@ -2762,8 +2776,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       activeCategory: 1
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['currentBills'])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['OPEN_TABLE', 'CLOSE_TABLE', 'ADD_DISH_TO_TABLE_BILL', 'REMOVE_DISH_FROM_TABLE_BILL']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['bills'])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['OPEN_TABLE', 'CLOSE_TABLE', 'ADD_PLATE_TO_TABLE_BILL', 'REMOVE_PLATE_FROM_TABLE_BILL']), {
     makeThisActiveCategory: function makeThisActiveCategory(id) {
       this.activeCategory = id;
     }
@@ -3106,6 +3120,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //vuex import begin
 
 
@@ -3164,7 +3191,7 @@ var colors = {
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['bills'])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['OPEN_BILL', 'CLOSE_BILL']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['RESET_STATE', 'OPEN_BILL', 'CLOSE_BILL']), {
     // we do a ajax request to get the table data
     fetchTables: function fetchTables() {
       var _this = this;
@@ -80538,15 +80565,23 @@ var render = function() {
       ],
       staticClass:
         "w-32 h-32 bg-green-dark mr-4 mb-4 pr-1 pb-1 rounded-lg cursor-pointer",
+      attrs: { plate: _vm.plate, selectedtable: _vm.selectedtable },
       on: {
         click: function($event) {
-          return _vm.pressed()
+          return _vm.ADD_PLATE_TO_TABLE_BILL({
+            plate: _vm.plate,
+            selectedtable: _vm.selectedtable
+          })
         }
       }
     },
     [
       _vm._v(
-        "\n   \n    \n     " + _vm._s(this.plate.name) + "\n    \n   \n   \n"
+        "\n   \n    \n     " +
+          _vm._s(this.plate.name) +
+          "\n     " +
+          _vm._s(this.selectedtable) +
+          "\n    \n   \n   \n"
       )
     ]
   )
@@ -80613,7 +80648,11 @@ var render = function() {
             { key: plate.id },
             [
               _c("plate", {
-                attrs: { plate: plate, activeCategory: _vm.activeCategory }
+                attrs: {
+                  selectedtable: _vm.selectedtable,
+                  plate: plate,
+                  activeCategory: _vm.activeCategory
+                }
               })
             ],
             1
@@ -80990,49 +81029,64 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex" }, [
-    _c(
-      "button",
-      {
-        staticClass: "w--12 h-8 px-4 absolute bg-blue rounded pin-r",
-        class: { "bg-green": _vm.editingActive },
-        on: {
-          click: function($event) {
-            return _vm.editLayout(_vm.tables)
+    _c("div", { staticClass: "absolute pin-r p-1" }, [
+      _c(
+        "button",
+        {
+          staticClass: "w--12 h-8 px-4  bg-blue rounded",
+          class: { "bg-green": _vm.editingActive },
+          on: {
+            click: function($event) {
+              return _vm.editLayout(_vm.tables)
+            }
           }
-        }
-      },
-      [
-        _c(
-          "span",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.editingActive,
-                expression: "editingActive"
-              }
-            ]
-          },
-          [_vm._v("\n            editing\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.editingActive,
-                expression: "!editingActive"
-              }
-            ]
-          },
-          [_vm._v("\n            edit\n        ")]
-        )
-      ]
-    ),
+        },
+        [
+          _c(
+            "span",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.editingActive,
+                  expression: "editingActive"
+                }
+              ]
+            },
+            [_vm._v("\n            editing\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.editingActive,
+                  expression: "!editingActive"
+                }
+              ]
+            },
+            [_vm._v("\n            edit\n        ")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "w--12 h-8 px-4 bg-purple rounded",
+          on: {
+            click: function($event) {
+              return _vm.RESET_STATE()
+            }
+          }
+        },
+        [_c("span", [_vm._v("\n            reset state\n        ")])]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -95714,21 +95768,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]); //lets create a default state to reset to
+
+var getDefaultState = function getDefaultState() {
+  return {
+    persons: [],
+    bills: []
+  };
+};
+
 var state = {
   persons: [],
-  bills: {}
+  bills: []
 };
 var getters = {
   personsStored: function personsStored(state) {
     return state.persons ? state.persons.length : 0;
-  },
-  currentBills: function currentBills(state) {
-    return state.bills ? state.bills.lenght : 0;
   } // openTables: state => (state.opentables) ? state.opentables.length : 0,
 
 };
 var mutations = {
+  //reset method for the store
+  RESET_STATE: function RESET_STATE(state) {
+    Object.assign(state, getDefaultState());
+  },
   // begin this are the methods for adding persons
   ADD_PERSON_TO_LOCALSTORAGE: function ADD_PERSON_TO_LOCALSTORAGE(_ref, person) {
     var persons = _ref.persons;
@@ -95762,30 +95825,60 @@ var mutations = {
   // open and close bill from the tables pages
   OPEN_BILL: function OPEN_BILL(_ref5, table) {
     var bills = _ref5.bills;
+    var openTable = bills.find(function (t) {
+      return t.number === table.number;
+    });
+
+    if (!openTable) {
+      //lets create a date and format it
+      var currentTime = new Date();
+      var formatedDate = currentTime.getDate() + "-" + currentTime.getMonth() + "@" + currentTime.getHours() + ":" + currentTime.getMinutes(); //open the table (change status from table)
+
+      var tableBill = {
+        id: table.number,
+        status: 1,
+        openAt: formatedDate,
+        content: []
+      };
+      bills.push({
+        tableBill: tableBill
+      }); //create a bill
+
+      console.log(tableBill); //return bill id
+
+      return this.tableBill;
+    } else {//go to open table bill
+      //return bill id
+    }
   },
   CLOSE_BILL: function CLOSE_BILL(_ref6, table) {
     var bills = _ref6.bills;
   },
   //add dish to table
-  ADD_DISH_TO_TABLE_BILL: function ADD_DISH_TO_TABLE_BILL(_ref7, dish) {
-    var bill = _ref7.bill;
-    var inRecord = bill.find(function (d) {
-      return d.id === dish.id;
-    });
+  ADD_PLATE_TO_TABLE_BILL: function ADD_PLATE_TO_TABLE_BILL(_ref7, _ref8) {
+    var bills = _ref7.bills;
+    var plate = _ref8.plate,
+        selectedtable = _ref8.selectedtable;
+    var bill = bills.find(function (b) {
+      return b.tableBill.id === selectedtable;
+    }); // const plateInBill = bill.find( p => p.tableBill.content === );
+    //variable testing
 
-    if (!inRecord) {
-      bill.push({
-        dish: dish.id,
-        name: dish.name,
-        price: dish.price,
-        quantity: 1
-      });
-    } else {
-      inRecord.quantity++;
-    }
+    console.log(bill.tableBill);
+    console.log(bills);
+    console.log(plate);
+    console.log(selectedtable); // let billContent = bill.content
+
+    console.log(selectedtable);
+    bill.tableBill.content.push({
+      plate: plate.id,
+      name: plate.name,
+      price: plate.price,
+      quantity: 1
+    });
   },
-  REMOVE_DISH_FROM_TABLE_BILL: function REMOVE_DISH_FROM_TABLE_BILL(_ref8, dish) {
-    var bills = _ref8.bills;
+  REMOVE_PLATE_FROM_TABLE_BILL: function REMOVE_PLATE_FROM_TABLE_BILL(_ref9, dish) {
+    var bills = _ref9.bills;
     var inRecord = bill.find(function (d) {
       return d.id === dish.id;
     });

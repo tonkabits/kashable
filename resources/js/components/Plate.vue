@@ -1,8 +1,16 @@
 <template>
-    <div @click="pressed()" v-show="activeCategory == this.plate.category_id" class="w-32 h-32 bg-green-dark mr-4 mb-4 pr-1 pb-1 rounded-lg cursor-pointer">
+    <div 
+
+        @click="ADD_PLATE_TO_TABLE_BILL({plate, selectedtable})"
+        v-show="activeCategory == this.plate.category_id"
+        class="w-32 h-32 bg-green-dark mr-4 mb-4 pr-1 pb-1 rounded-lg cursor-pointer"
+        :plate="plate"
+        :selectedtable="selectedtable"
+        >
        
         
          {{this.plate.name}}
+         {{this.selectedtable}}
         
        
        
@@ -17,7 +25,7 @@ import {mapGetters} from "vuex";
 //vuex import end
 
 export default {
-    props: ['plate', 'activeCategory'],
+    props: ['plate', 'selectedtable', 'activeCategory'],
     
     data(){
         return{
@@ -25,7 +33,7 @@ export default {
             
         }
     },
-    computed: {...mapState(['currentBills'])},
+    computed: {...mapState(['bills'])},
     methods:{
         pressed(){
             alert('added product ' + this.plate.name)
@@ -34,8 +42,8 @@ export default {
             
             'OPEN_TABLE',
             'CLOSE_TABLE',
-            'ADD_DISH_TO_TABLE_BILL',
-            'REMOVE_DISH_FROM_TABLE_BILL',
+            'ADD_PLATE_TO_TABLE_BILL',
+            'REMOVE_PLATE_FROM_TABLE_BILL',
         
         ]),
     }
