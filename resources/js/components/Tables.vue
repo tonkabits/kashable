@@ -70,8 +70,9 @@
         </div>
                
                 <div v-for="(table, index) in tables" v-bind:key="index" class="w-full flex flex-col flex-wrap"  >
+               <!-- <Box v-show="editingActive" class="box"/> -->
                      
-                     <a draggable 
+                     <a 
                             v-show="editingActive" 
                             :style="'top:'+ table.top + 'px;left:' + table.left + 'px;'" 
                             style="position: absolute;" 
@@ -139,21 +140,29 @@ var colors = {
 
 // end of color picker import
 
-// begin of draggable import
-import draggable from '../behaviors/draggable.js'
+// begin of vue-pose import
+import posed from '../../../node_modules/vue-pose'
+
 
 // end of draggable import
 
 export default {
-    directives:{ draggable },
+    
     components:{
         'sketch-picker': sketch,
+        Box: posed.div({
+            draggable: true,
+        }),
     },
     data() {
         return{
             test: 'test working',
             // tables
             tables: {},
+
+            //api requests
+            getUrl: '/api/v.01/tables',
+            postUrl: '/api/v.01/tables',
 
 
             // editing data
@@ -175,13 +184,13 @@ export default {
 
         // we do a ajax request to get the table data
         fetchTables() {
-            axios.get('/api/v.01/tables').then((res) => {
+            axios.get(this.getUrl).then((res) => {
                 this.tables = res.data.data;
             });
         },
 
         updateTable(tables) {
-            axios.post('/api/v.01/tables' , this.tables).then((res) =>{
+            axios.post(this.postUrl , this.tables).then((res) =>{
                 
             });
         },
@@ -214,4 +223,16 @@ export default {
     },
 }
 </script>
+<style>
 
+.box {
+  width: 100px;
+  height: 100px;
+  background: #54E365;
+}
+.box2 {
+  width: 200px;
+  height: 200px;
+  background: rgb(84, 122, 227);
+}
+</style>

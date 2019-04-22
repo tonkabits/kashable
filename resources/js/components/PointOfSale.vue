@@ -35,7 +35,7 @@
         
         
         ></bill-layout>
-
+        
     </div>
 </div>
 </template>
@@ -52,18 +52,29 @@ import category from './Category.vue';
 import plate from './Plate.vue';
 
 
+
+
 export default {
+    name: 'PointOfSale',
+    components: {category , plate},
     props:['selectedtable' , 'plates' , 'categories' ,],
     data() {
         return{
-            activeCategory: 10,
+            activeCategory: 1,
             
         }
     },
-    computed: {...mapState(['opentables'])},
+    computed: {...mapState(['currentBills'])},
     methods:{
         //we map all methods referent to adding and closing tables
-        ...mapMutations(['OPEN_TABLE' , 'CLOSE_TABLE']),
+        ...mapMutations([
+            
+            'OPEN_TABLE',
+            'CLOSE_TABLE',
+            'ADD_DISH_TO_TABLE_BILL',
+            'REMOVE_DISH_FROM_TABLE_BILL',
+        
+        ]),
         
         makeThisActiveCategory(id){
             this.activeCategory = id;

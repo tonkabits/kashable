@@ -9,6 +9,13 @@
     </div>
 </template>
 <script>
+
+//vuex import begin
+import {mapState} from "vuex"
+import {mapMutations} from "vuex";
+import {mapGetters} from "vuex";
+//vuex import end
+
 export default {
     props: ['plate', 'activeCategory'],
     
@@ -18,10 +25,19 @@ export default {
             
         }
     },
+    computed: {...mapState(['currentBills'])},
     methods:{
         pressed(){
             alert('added product ' + this.plate.name)
-        }
+        },
+        ...mapMutations([
+            
+            'OPEN_TABLE',
+            'CLOSE_TABLE',
+            'ADD_DISH_TO_TABLE_BILL',
+            'REMOVE_DISH_FROM_TABLE_BILL',
+        
+        ]),
     }
 }
 </script>

@@ -27,6 +27,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('canvas-section', require('./components/Canvas.vue').default);
 Vue.component('adding-fields', require('./components/AddingFields.vue').default);
 Vue.component('tables', require('./components/Tables.vue').default);
+Vue.component('tables2', require('./components/Tables2.vue').default);
+Vue.component('vue-draggable-resizable', require('../../node_modules/vue-draggable-resizable').default);
 
 //pos layout
 Vue.component('category' , require('./components/Category.vue').default);

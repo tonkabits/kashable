@@ -7,10 +7,10 @@
     </div> 
 </template>
 <script>
-import plate from './Plate.vue';
+
 export default {
     props: ['category' , 'activeCategory'],
-    components: {plates:'plates'},
+    
     data() {
         return{
             text: 'vue working',

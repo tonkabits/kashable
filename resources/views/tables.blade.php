@@ -1,4 +1,4 @@
 @extends('layouts.nologin')
 @section('content')
-    <tables></tables>
+    <tables2></tables2>
 @endsection
