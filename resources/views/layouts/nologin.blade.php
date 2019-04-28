@@ -33,9 +33,6 @@
                     <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
                         tables
                     </a>
-                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/pos">
-                        pos
-                    </a>
                 </div>
                 <div class="block md:inline-flex">
                 </div>

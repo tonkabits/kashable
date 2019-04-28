@@ -20,6 +20,8 @@ const state = {
 }
 const getters = {
     personsStored: state => (state.persons) ? state.persons.length : 0,
+    itemsInBills: state => (state.bills) ? state.bills.length : 0,
+    
 
     // openTables: state => (state.opentables) ? state.opentables.length : 0,
 }

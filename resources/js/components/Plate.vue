@@ -3,14 +3,22 @@
 
         @click="ADD_PLATE_TO_TABLE_BILL({plate, selectedtable})"
         v-show="activeCategory == this.plate.category_id"
-        class="w-32 h-32 bg-green-dark mr-4 mb-4 pr-1 pb-1 rounded-lg cursor-pointer"
+        class="w-32 h-32 bg-indigo-darkest flex flex-col justify-between mr-4 mb-4 rounded-lg cursor-pointer"
         :plate="plate"
         :selectedtable="selectedtable"
         >
-       
-        
-         {{this.plate.name}}
-         {{this.selectedtable}}
+        <div class="flex">
+
+        </div>
+        <div class="flex bg-indigo-darker text-white h-8 p-2 justify-between rounded-b">
+
+            {{this.plate.name}}
+            <span class="flex">
+                {{this.plate.price}}
+            </span>
+
+        </div>
+         
         
        
        

@@ -2438,6 +2438,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2447,12 +2452,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//vuex import begin
+
+
+ //vuex import end
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['selectedtable'],
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['bills'])),
+  created: function created() {
+    this.fetchBill();
+  },
   data: function data() {
     return {
-      bill: 'vue is working'
+      activeTableBill: [],
+      taxPercentage: 7
     };
+  },
+  methods: {
+    fetchBill: function fetchBill() {
+      var _this = this;
+
+      var bill = this.bills.find(function (b) {
+        return b.tableBill.id == _this.selectedtable;
+      }); // console.log(this.bills[2].tableBill.id == this.selectedtable);
+      // console.log(bill);
+
+      var activeTableBill = bill.tableBill.content;
+      this.activeTableBill = activeTableBill; // console.log(activeTableBill);
+      // return activeTableBill;
+    },
+    beforeTax: function beforeTax() {
+      return this.activeTableBill.reduce(function (beforeTax, bt) {
+        return beforeTax + bt.price;
+      }, 0);
+    },
+    afterTax: function afterTax() {
+      var beforeTax = this.beforeTax();
+      console.log(beforeTax);
+      var afterTax = beforeTax + beforeTax * this.taxPercentage / 100;
+      return afterTax; //    return beforeTax() * this.taxPercentage;
+    }
   }
 });
 
@@ -2653,6 +2713,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -80352,16 +80420,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-white" }, [
-    _c("div", { staticClass: "h-8" }, [
-      _vm._v(
-        "\n        current selected table " +
-          _vm._s(_vm.selectedtable) +
-          "\n    "
+  return _c(
+    "div",
+    {
+      staticClass:
+        "bg-white flex justify-between rounded mx-2 p-4 flex flex-col"
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "flex flex-col h-64 overflow-y-scroll" },
+        [
+          _c("span", {}, [
+            _c("h3", [_vm._v("Table " + _vm._s(_vm.selectedtable) + " Bill")])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _vm._l(this.activeTableBill, function(item) {
+            return _c("div", { key: item }, [
+              _c(
+                "div",
+                { staticClass: "flex h-6 justify-between w-full px-1 py-1" },
+                [
+                  _vm._v(
+                    "\n            " + _vm._s(item.name) + "\n                "
+                  ),
+                  _c("span", { staticClass: "flex" }, [
+                    _vm._v(_vm._s(item.price))
+                  ])
+                ]
+              )
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "h-16 bg-grey-lightest rounded flex flex-col" },
+        [
+          _c("div", { staticClass: "w-full mb-0 h-8" }, [
+            _c(
+              "div",
+              { staticClass: "flex justify-between w-full px-2 py-2" },
+              [
+                _vm._v(" before tax\n                "),
+                _c("span", { staticClass: "flex" }, [
+                  _vm._v(_vm._s(_vm.beforeTax()))
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "div",
+              {
+                staticClass: "flex justify-between w-full px-2 py-2 font-bold"
+              },
+              [
+                _vm._v("Total\n                "),
+                _c("span", { staticClass: "flex font-bold" }, [
+                  _vm._v(_vm._s(_vm.afterTax()))
+                ])
+              ]
+            )
+          ])
+        ]
       )
-    ]),
-    _vm._v("\n    " + _vm._s(_vm.bill) + "\n")
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -80472,16 +80602,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
-    _c(
-      "div",
-      {
-        staticClass: "w-32 h-8 my-2 px-4",
-        class: { "text-blue font-bold": _vm.category.id === _vm.activeCategory }
-      },
-      [_vm._v("\n    " + _vm._s(_vm.category.name) + "\n\n    ")]
-    )
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "mr-4 bg-blue-dark rounded rounded-l-none",
+      class: { "bg-indigo-darker": _vm.category.id === _vm.activeCategory }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "flex items-center text-white w-32 h-16 mb-2 px-4",
+          class: {
+            "text-white font-bold": _vm.category.id === _vm.activeCategory
+          }
+        },
+        [_vm._v("\n    " + _vm._s(_vm.category.name) + "\n\n    ")]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -80564,7 +80703,7 @@ var render = function() {
         }
       ],
       staticClass:
-        "w-32 h-32 bg-green-dark mr-4 mb-4 pr-1 pb-1 rounded-lg cursor-pointer",
+        "w-32 h-32 bg-indigo-darkest flex flex-col justify-between mr-4 mb-4 rounded-lg cursor-pointer",
       attrs: { plate: _vm.plate, selectedtable: _vm.selectedtable },
       on: {
         click: function($event) {
@@ -80576,12 +80715,20 @@ var render = function() {
       }
     },
     [
-      _vm._v(
-        "\n   \n    \n     " +
-          _vm._s(this.plate.name) +
-          "\n     " +
-          _vm._s(this.selectedtable) +
-          "\n    \n   \n   \n"
+      _c("div", { staticClass: "flex" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex bg-indigo-darker text-white h-8 p-2 justify-between rounded-b"
+        },
+        [
+          _vm._v("\n\n        " + _vm._s(this.plate.name) + "\n        "),
+          _c("span", { staticClass: "flex" }, [
+            _vm._v("\n            " + _vm._s(this.plate.price) + "\n        ")
+          ])
+        ]
       )
     ]
   )
@@ -80609,10 +80756,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex" }, [
-    _c("div", { staticClass: "w-3/4 flex bg-green" }, [
+    _c("div", { staticClass: "w-3/4 flex bg-blue pt-3" }, [
       _c(
         "div",
-        { staticClass: "w-64 pl-4" },
+        { staticClass: "w-64 h-screen overflow-y-scroll" },
         _vm._l(this.categories, function(category) {
           return _c(
             "div",
@@ -80664,7 +80811,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "w-1/4 bg-blue" },
+      { staticClass: "w-1/4 bg-blue p-3" },
       [_c("bill-layout", { attrs: { selectedtable: _vm.selectedtable } })],
       1
     )
@@ -95784,6 +95931,9 @@ var state = {
 var getters = {
   personsStored: function personsStored(state) {
     return state.persons ? state.persons.length : 0;
+  },
+  itemsInBills: function itemsInBills(state) {
+    return state.bills ? state.bills.length : 0;
   } // openTables: state => (state.opentables) ? state.opentables.length : 0,
 
 };

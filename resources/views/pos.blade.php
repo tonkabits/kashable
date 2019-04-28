@@ -1,6 +1,5 @@
 @extends('layouts.nologin')
 @section('content')
-<h1>POS</h1>
 <div class="">
     <!-- <div class="w-3/4 flex flex-row bg-green">
         <div class="w-1/4">
