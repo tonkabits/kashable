@@ -92,7 +92,7 @@ const mutations = {
                 tableBill
             })
             //create a bill
-            console.log(tableBill)
+            // console.log(tableBill)
             
             //return bill id
             return this.tableBill
@@ -113,15 +113,16 @@ const mutations = {
     ADD_PLATE_TO_TABLE_BILL({bills}, { plate, selectedtable}){
 
         const bill  = bills.find( b => b.tableBill.id === selectedtable);
+
         // const plateInBill = bill.find( p => p.tableBill.content === );
         //variable testing
-        console.log(bill.tableBill);
-        console.log(bills);
-        console.log(plate);
-        console.log(selectedtable);
+        // console.log(bill.tableBill);
+        // console.log(bills);
+        // console.log(plate);
+        // console.log(selectedtable);
         
         // let billContent = bill.content
-        console.log(selectedtable);
+        // console.log(selectedtable);
             bill.tableBill.content.push({
                 plate: plate.id,
                 name: plate.name,
@@ -130,11 +131,17 @@ const mutations = {
             });
        
     },
-    REMOVE_PLATE_FROM_TABLE_BILL({bills}, dish ){
-        const inRecord = bill.find( d => d.id === dish.id );
-        if(inRecord.quantity > 1){
-            inRecord.quantity--
-        }
+    REMOVE_PLATE_FROM_TABLE_BILL({bills}, {item, selectedtable}){
+        
+        const bill = bills.find(b => b.tableBill.id === selectedtable);
+        // const inRecord = bill.splice( d => d.id === dish.id );
+        const content = bill.tableBill.content;
+        content.splice(
+            content.indexOf(item) , 1)
+        
+        // if(inRecord.quantity > 1){
+        //     inRecord.quantity--
+        // }
     },
     // end of adding to table
 

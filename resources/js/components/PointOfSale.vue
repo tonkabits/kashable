@@ -1,6 +1,6 @@
 <template>
 <div class="flex">
-    <div class="w-3/4 flex bg-blue pt-3">
+    <div class="w-3/4 flex bg-indigo-darkest pt-3">
         <div class="w-64 h-screen overflow-y-scroll">
 
             <div v-for="category in this.categories" 
@@ -35,7 +35,7 @@
         </div>
     </div>
     
-    <div class="w-1/4 bg-blue p-3">
+    <div class="w-1/4 bg-indigo-darkest p-3">
         <bill-layout
             :selectedtable="selectedtable"
         

@@ -2472,6 +2472,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //vuex import begin
 
 
@@ -2489,7 +2499,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       taxPercentage: 7
     };
   },
-  methods: {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['REMOVE_PLATE_FROM_TABLE_BILL', 'CLOSE_BILL']), {
     fetchBill: function fetchBill() {
       var _this = this;
 
@@ -2508,12 +2518,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, 0);
     },
     afterTax: function afterTax() {
-      var beforeTax = this.beforeTax();
-      console.log(beforeTax);
+      var beforeTax = this.beforeTax(); //    console.log(beforeTax);
+
       var afterTax = beforeTax + beforeTax * this.taxPercentage / 100;
       return afterTax; //    return beforeTax() * this.taxPercentage;
     }
-  }
+  })
 });
 
 /***/ }),
@@ -3254,7 +3264,7 @@ var colors = {
       colors: colors,
       currentColor: '',
       displayPicker: false,
-      backgroundColor: '#413F3E' // position
+      backgroundColor: '#191E38' // position
 
     };
   },
@@ -80438,14 +80448,41 @@ var render = function() {
           _c("hr"),
           _vm._v(" "),
           _vm._l(this.activeTableBill, function(item) {
-            return _c("div", { key: item }, [
+            return _c("div", {}, [
               _c(
                 "div",
                 { staticClass: "flex h-6 justify-between w-full px-1 py-1" },
                 [
-                  _vm._v(
-                    "\n            " + _vm._s(item.name) + "\n                "
-                  ),
+                  _c("div", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(item.name) +
+                        "\n                     "
+                    ),
+                    _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "h-4 w-4 bg-red px-1 text-white text-xs rounded rounded-full",
+                          on: {
+                            click: function($event) {
+                              return _vm.REMOVE_PLATE_FROM_TABLE_BILL({
+                                item: item,
+                                selectedtable: _vm.selectedtable
+                              })
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            x\n                        "
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c("span", { staticClass: "flex" }, [
                     _vm._v(_vm._s(item.price))
                   ])
@@ -80703,7 +80740,7 @@ var render = function() {
         }
       ],
       staticClass:
-        "w-32 h-32 bg-indigo-darkest flex flex-col justify-between mr-4 mb-4 rounded-lg cursor-pointer",
+        "w-32 h-32 bg-indigo-darker flex flex-col justify-between mr-4 mb-4 rounded-lg cursor-pointer",
       attrs: { plate: _vm.plate, selectedtable: _vm.selectedtable },
       on: {
         click: function($event) {
@@ -80715,18 +80752,29 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "flex" }),
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex border-b-2 text-yellow-dark h-8 p-2 justify-between rounded-t"
+        },
+        [_vm._v("\ntest\n        ")]
+      ),
       _vm._v(" "),
       _c(
         "div",
         {
           staticClass:
-            "flex bg-indigo-darker text-white h-8 p-2 justify-between rounded-b"
+            "flex border-t-2 text-white h-8 p-2 justify-between rounded-b"
         },
         [
-          _vm._v("\n\n        " + _vm._s(this.plate.name) + "\n        "),
+          _vm._v(
+            "\n\n            " + _vm._s(this.plate.name) + "\n            "
+          ),
           _c("span", { staticClass: "flex" }, [
-            _vm._v("\n            " + _vm._s(this.plate.price) + "\n        ")
+            _vm._v(
+              "\n                " + _vm._s(this.plate.price) + "\n            "
+            )
           ])
         ]
       )
@@ -80756,7 +80804,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex" }, [
-    _c("div", { staticClass: "w-3/4 flex bg-blue pt-3" }, [
+    _c("div", { staticClass: "w-3/4 flex bg-indigo-darkest pt-3" }, [
       _c(
         "div",
         { staticClass: "w-64 h-screen overflow-y-scroll" },
@@ -80811,7 +80859,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "w-1/4 bg-blue p-3" },
+      { staticClass: "w-1/4 bg-indigo-darkest p-3" },
       [_c("bill-layout", { attrs: { selectedtable: _vm.selectedtable } })],
       1
     )
@@ -81180,7 +81228,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "w--12 h-8 px-4  bg-blue rounded",
+          staticClass: "w--12 h-8 px-4  bg-green-dark rounded mt-2 ",
           class: { "bg-green": _vm.editingActive },
           on: {
             click: function($event) {
@@ -81216,7 +81264,7 @@ var render = function() {
                 }
               ]
             },
-            [_vm._v("\n            edit\n        ")]
+            [_vm._v("\n            edit tables position\n        ")]
           )
         ]
       ),
@@ -81224,14 +81272,14 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "w--12 h-8 px-4 bg-purple rounded",
+          staticClass: "w--12 h-8 px-4 bg-green-dark rounded mt-2 mr-2",
           on: {
             click: function($event) {
               return _vm.RESET_STATE()
             }
           }
         },
-        [_c("span", [_vm._v("\n            reset state\n        ")])]
+        [_c("span", [_vm._v("\n            reset tables state\n        ")])]
       )
     ]),
     _vm._v(" "),
@@ -81356,7 +81404,7 @@ var render = function() {
                     {
                       key: table.id,
                       staticClass:
-                        "w-32 h-32 flex mr-2 mb-2 rounded bg-grey cursor-pointer items-center justify-center text-3xl font-bold text-white no-underline ",
+                        "w-32 h-32 flex mr-2 mb-2 rounded bg-purple-darker cursor-pointer items-center justify-center text-3xl font-bold text-white no-underline ",
                       staticStyle: { position: "absolute" },
                       style:
                         "top:" + table.top + "px;left:" + table.left + "px;",
@@ -81375,27 +81423,6 @@ var render = function() {
                             "\n                                \n                            "
                         )
                       ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "w-32 h-8 rounded-t bg-blue cursor-pointer  pin-t pin-r",
-                      staticStyle: { position: "absolute" },
-                      style:
-                        "top:" + table.top + "px;left:" + table.left + "px;",
-                      on: {
-                        click: function($event) {
-                          return _vm.CLOSE_BILL(table)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        " \n                    \n                      \n                        ask for bill\n                        \n                    "
-                      )
                     ]
                   )
                 ]
@@ -95993,8 +96020,8 @@ var mutations = {
       bills.push({
         tableBill: tableBill
       }); //create a bill
-
-      console.log(tableBill); //return bill id
+      // console.log(tableBill)
+      //return bill id
 
       return this.tableBill;
     } else {//go to open table bill
@@ -96013,13 +96040,13 @@ var mutations = {
       return b.tableBill.id === selectedtable;
     }); // const plateInBill = bill.find( p => p.tableBill.content === );
     //variable testing
+    // console.log(bill.tableBill);
+    // console.log(bills);
+    // console.log(plate);
+    // console.log(selectedtable);
+    // let billContent = bill.content
+    // console.log(selectedtable);
 
-    console.log(bill.tableBill);
-    console.log(bills);
-    console.log(plate);
-    console.log(selectedtable); // let billContent = bill.content
-
-    console.log(selectedtable);
     bill.tableBill.content.push({
       plate: plate.id,
       name: plate.name,
@@ -96027,15 +96054,18 @@ var mutations = {
       quantity: 1
     });
   },
-  REMOVE_PLATE_FROM_TABLE_BILL: function REMOVE_PLATE_FROM_TABLE_BILL(_ref9, dish) {
+  REMOVE_PLATE_FROM_TABLE_BILL: function REMOVE_PLATE_FROM_TABLE_BILL(_ref9, _ref10) {
     var bills = _ref9.bills;
-    var inRecord = bill.find(function (d) {
-      return d.id === dish.id;
-    });
+    var item = _ref10.item,
+        selectedtable = _ref10.selectedtable;
+    var bill = bills.find(function (b) {
+      return b.tableBill.id === selectedtable;
+    }); // const inRecord = bill.splice( d => d.id === dish.id );
 
-    if (inRecord.quantity > 1) {
-      inRecord.quantity--;
-    }
+    var content = bill.tableBill.content;
+    content.splice(content.indexOf(item), 1); // if(inRecord.quantity > 1){
+    //     inRecord.quantity--
+    // }
   }
 };
 var vuexLocal = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"]({

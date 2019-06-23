@@ -3,14 +3,14 @@
 
         @click="ADD_PLATE_TO_TABLE_BILL({plate, selectedtable})"
         v-show="activeCategory == this.plate.category_id"
-        class="w-32 h-32 bg-indigo-darkest flex flex-col justify-between mr-4 mb-4 rounded-lg cursor-pointer"
+        class="w-32 h-32 bg-indigo-darker flex flex-col justify-between mr-4 mb-4 rounded-lg cursor-pointer"
         :plate="plate"
         :selectedtable="selectedtable"
         >
-        <div class="flex">
-
+        <div class="flex border-b-2 text-yellow-dark h-8 p-2 justify-between rounded-t">
+test
         </div>
-        <div class="flex bg-indigo-darker text-white h-8 p-2 justify-between rounded-b">
+        <div class="flex border-t-2 text-white h-8 p-2 justify-between rounded-b">
 
             {{this.plate.name}}
             <span class="flex">

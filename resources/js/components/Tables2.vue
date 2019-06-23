@@ -4,23 +4,23 @@
          <button 
             @click="editLayout(tables)" 
             :class="{'bg-green' : editingActive}"
-            class="w--12 h-8 px-4  bg-blue rounded"
+            class="w--12 h-8 px-4  bg-green-dark rounded mt-2 "
             
             >
             <span v-show="editingActive">
                 editing
             </span>
             <span v-show="!editingActive">
-                edit
+                edit tables position
             </span>
         </button>
          <button 
             @click="RESET_STATE()" 
-            class="w--12 h-8 px-4 bg-purple rounded"
+            class="w--12 h-8 px-4 bg-green-dark rounded mt-2 mr-2"
             
             >
             <span>
-                reset state
+                reset tables state
             </span>
         
         </button>
@@ -72,7 +72,7 @@
                             :key="table.id" 
                             :href="'/tables/'+ table.id"
                             style="position: absolute;"  
-                            class="w-32 h-32 flex mr-2 mb-2 rounded bg-grey cursor-pointer items-center justify-center text-3xl font-bold text-white no-underline ">
+                            class="w-32 h-32 flex mr-2 mb-2 rounded bg-purple-darker cursor-pointer items-center justify-center text-3xl font-bold text-white no-underline ">
                             
                                 <span class="">
                                 
@@ -81,7 +81,7 @@
                                 </span>
                             
                         </a>
-                        <a 
+                        <!-- <a 
                             @click="CLOSE_BILL(table)" 
                             :style="'top:'+ table.top + 'px;left:' + table.left + 'px;'" 
                             style="position: absolute;"   
@@ -90,7 +90,7 @@
                           
                             ask for bill
                             
-                        </a>
+                        </a> -->
                 </div> 
             </div >
             
@@ -152,7 +152,7 @@ export default {
                 colors,
                 currentColor: '',
                 displayPicker: false,
-                backgroundColor: '#413F3E'
+                backgroundColor: '#191E38'
 
                 // position
         }

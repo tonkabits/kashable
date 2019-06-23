@@ -23,14 +23,26 @@
 
 <body>
     <div class="font-sans antialiased fixed z-20 pin-t pin-x" id="app">
-        <nav class="flex items-center justify-between flex-wrap bg-red p-4">
+        <nav class="flex items-center justify-between flex-wrap bg-green-lightest p-4">
             <div class="flex items-center flex-no-shrink text-white mr-6">
-                <img src="" alt="" width="300px">
+                <!-- <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    tables
+                </a> -->
+                <!-- <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    dishes
+                </a>
+                <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    in kitchen
+                </a>
+                <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    reservations
+                </a> -->
+                <img src="/images/logo.png" alt="" width="115px">
             </div>
 
             <div class="flex items-center w-auto">
                 <div class="text-sm flex-grow">
-                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-green-darkest hover:text-green-darker mr-4" href="/tables">
                         tables
                     </a>
                 </div>
@@ -40,9 +52,9 @@
 
             </div>
         </nav>
-        
-            @yield('content')
-        
+
+        @yield('content')
+
     </div>
 </body>
 

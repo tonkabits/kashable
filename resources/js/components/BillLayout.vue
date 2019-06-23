@@ -5,9 +5,19 @@
                 <h3>Table {{selectedtable}} Bill</h3>
             </span>
             <hr>
-            <div  v-for="item in this.activeTableBill" :key="item" class="">
+            <div  v-for="item in this.activeTableBill"  class="">
                 <div class="flex h-6 justify-between w-full px-1 py-1">
-                {{item.name}}
+                    <div>
+                    {{item.name}}
+                         <span>
+                            <button
+                                @click="REMOVE_PLATE_FROM_TABLE_BILL({item, selectedtable})"
+                                class="h-4 w-4 bg-red px-1 text-white text-xs rounded rounded-full"
+                            >
+                                x
+                            </button>
+                        </span>
+                    </div>
                     <span class="flex">{{item.price}}</span>
                 </div>
             </div>
@@ -49,6 +59,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['REMOVE_PLATE_FROM_TABLE_BILL', 'CLOSE_BILL']),
        fetchBill(){
             const bill = this.bills.find( b => b.tableBill.id == this.selectedtable);
             // console.log(this.bills[2].tableBill.id == this.selectedtable);
@@ -64,7 +75,7 @@ export default {
        },
        afterTax(){
            let beforeTax = this.beforeTax();
-           console.log(beforeTax);
+        //    console.log(beforeTax);
            let afterTax = beforeTax + (beforeTax * this.taxPercentage / 100);
            return afterTax;
         //    return beforeTax() * this.taxPercentage;
