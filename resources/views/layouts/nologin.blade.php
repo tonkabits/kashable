@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,22 +20,42 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+    <div class="font-sans antialiased fixed z-20 pin-t pin-x" id="app">
+        <nav class="flex items-center justify-between flex-wrap bg-green-lightest p-4">
+            <div class="flex items-center flex-no-shrink text-white mr-6">
+                <!-- <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    tables
+                </a> -->
+                <!-- <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    dishes
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    in kitchen
+                </a>
+                <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
+                    reservations
+                </a> -->
+                <img src="/images/logo.png" alt="" width="115px">
+            </div>
+
+            <div class="flex items-center w-auto">
+                <div class="text-sm flex-grow">
+                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-green-darkest hover:text-green-darker mr-4" href="/tables">
+                        tables
+                    </a>
+                </div>
+                <div class="block md:inline-flex">
+                </div>
+
+
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        @yield('content')
+
     </div>
 </body>
+
 </html>
