@@ -1,7 +1,7 @@
 
 ## About KASHABLE
 
-kashable is a web point of sale starter build with laravel, vue js and tailwindcss.
+kashable is a web POS starter build with laravel, vue js and tailwindcss.
 
 
 - [Laravel](https://laravel.com/).
