@@ -76,7 +76,7 @@
                 <img src="/images/kashable_logo_001.png" alt="" width="230px">
 
 
-                <img src="/images/kashable_illus_002.png" alt="" width="480px" style="position:absolute; right:3%; top:1%;">
+                <img src="/images/kashable_illus.png" alt="" width="480px" style="position:absolute; right:3%; top:1%;">
             </div>
 
             <div class="links">
