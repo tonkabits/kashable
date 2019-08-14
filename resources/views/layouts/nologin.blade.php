@@ -42,7 +42,7 @@
 
             <div class="flex items-center w-auto">
                 <div class="text-sm flex-grow">
-                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-green-darkest hover:text-green-darker mr-4 uppercase text-md font-bold" href="/tables">
+                    <a href="https://kashable.tonkabits.com/" class="no-underline block mt-4 md:inline-block md:mt-0 text-green-darkest hover:text-green-darker mr-4 uppercase text-md font-bold" href="/tables">
                         tables
                     </a>
                 </div>
