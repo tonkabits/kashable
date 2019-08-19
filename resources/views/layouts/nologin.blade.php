@@ -37,12 +37,12 @@
                 <a class="no-underline block mt-4 md:inline-block md:mt-0 text-red-lightest hover:text-white mr-4" href="/tables">
                     reservations
                 </a> -->
-                <img src="/images/logo.png" alt="" width="115px">
+                <a href="https://kashable.tonkabits.com/"><img src="/images/logo_simple_002.png" alt="" width="128px"></a>
             </div>
 
             <div class="flex items-center w-auto">
                 <div class="text-sm flex-grow">
-                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-green-darkest hover:text-green-darker mr-4" href="/tables">
+                    <a class="no-underline block mt-4 md:inline-block md:mt-0 text-green-darkest hover:text-green-darker mr-4 uppercase text-md font-bold" href="/tables">
                         tables
                     </a>
                 </div>

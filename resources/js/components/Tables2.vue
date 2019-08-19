@@ -3,40 +3,42 @@
         <div class="absolute pin-r p-1">
          <button 
             @click="editLayout(tables)" 
-            :class="{'bg-green' : editingActive}"
-            class="w--12 h-8 px-4  bg-green-dark rounded mt-2 "
+            :class="{'bg-blue' : editingActive}"
+            class="w--12 h-8 px-4  bg-green-dark rounded mt-2 mr-2"
             
             >
-            <span v-show="editingActive">
-                editing
+            <span v-show="editingActive" class="text-white">
+                save
             </span>
-            <span v-show="!editingActive">
+            <span v-show="!editingActive" class="text-white">
                 edit tables position
             </span>
         </button>
-         <button 
-            @click="RESET_STATE()" 
-            class="w--12 h-8 px-4 bg-green-dark rounded mt-2 mr-2"
-            
-            >
-            <span>
-                reset tables state
-            </span>
-        
-        </button>
+    
 
         </div>
   
         <div class="w-full h-screen" :style="'background-color: ' + backgroundColor">
             <div class="h-8">
                 <span v-show="editingActive">
+                  
 
                     <!-- begin of color picker -->
                     <span class="flex">
+                        <button 
+                            @click="RESET_STATE()" 
+                            class="w--12 h-8 px-4 bg-green-dark rounded mt-2 ml-2"
+                            
+                            >
+                            <span>
+                                reset tables state
+                            </span>
+                    
+                        </button>
                         <button @click="togglePicker()" class="border bg-grey-lighter border-grey-light rounded-sm  w-8 h-8 m-2 ">
                             <span class="inline-block bg-black h-4 w-4 rounded-sm" :style="'background-color: ' + backgroundColor"></span>
                         </button>
-                        <p>background color</p>
+                        <p class="text-white mt-3">change background color</p>
                     </span>
                     <sketch-picker
                         v-if="displayPicker"
@@ -56,7 +58,7 @@
                     :x="table.left"
                     :y="table.top"
                     :parent="true"
-                    :class="'bg-green h-32 w-32'"
+                    :class="'flex h-32 w-32 items-center justify-center text-3xl font-bold text-white no-underline border-2 border-dotted rounded-lg border-white'"
                     @dragging="onDrag(index, ...arguments)" 
                 >
                      <span class="">         

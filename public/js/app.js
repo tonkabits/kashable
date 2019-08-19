@@ -3211,6 +3211,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 //vuex import begin
 
 
@@ -81228,8 +81230,8 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "w--12 h-8 px-4  bg-green-dark rounded mt-2 ",
-          class: { "bg-green": _vm.editingActive },
+          staticClass: "w--12 h-8 px-4  bg-green-dark rounded mt-2 mr-2",
+          class: { "bg-blue": _vm.editingActive },
           on: {
             click: function($event) {
               return _vm.editLayout(_vm.tables)
@@ -81247,9 +81249,10 @@ var render = function() {
                   value: _vm.editingActive,
                   expression: "editingActive"
                 }
-              ]
+              ],
+              staticClass: "text-white"
             },
-            [_vm._v("\n            editing\n        ")]
+            [_vm._v("\n            save\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -81262,24 +81265,12 @@ var render = function() {
                   value: !_vm.editingActive,
                   expression: "!editingActive"
                 }
-              ]
+              ],
+              staticClass: "text-white"
             },
             [_vm._v("\n            edit tables position\n        ")]
           )
         ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "w--12 h-8 px-4 bg-green-dark rounded mt-2 mr-2",
-          on: {
-            click: function($event) {
-              return _vm.RESET_STATE()
-            }
-          }
-        },
-        [_c("span", [_vm._v("\n            reset tables state\n        ")])]
       )
     ]),
     _vm._v(" "),
@@ -81312,6 +81303,26 @@ var render = function() {
                     "button",
                     {
                       staticClass:
+                        "w--12 h-8 px-4 bg-green-dark rounded mt-2 ml-2",
+                      on: {
+                        click: function($event) {
+                          return _vm.RESET_STATE()
+                        }
+                      }
+                    },
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "\n                            reset tables state\n                        "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
                         "border bg-grey-lighter border-grey-light rounded-sm  w-8 h-8 m-2 ",
                       on: {
                         click: function($event) {
@@ -81327,7 +81338,9 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("p", [_vm._v("background color")])
+                  _c("p", { staticClass: "text-white mt-3" }, [
+                    _vm._v("change background color")
+                  ])
                 ]),
                 _vm._v(" "),
                 _vm.displayPicker
@@ -81349,7 +81362,8 @@ var render = function() {
                     "vdr",
                     {
                       key: index,
-                      class: "bg-green h-32 w-32",
+                      class:
+                        "flex h-32 w-32 items-center justify-center text-3xl font-bold text-white no-underline border-2 border-dotted rounded-lg border-white",
                       attrs: {
                         w: 100,
                         h: 100,
